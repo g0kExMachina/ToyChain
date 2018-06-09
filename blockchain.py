@@ -19,12 +19,22 @@ class block:
   def print_block(self):
     print(self.__dict__)
 
+class transactions:
+  def __init__(self,sender,receiver,value):
+    self.sender = sender
+    self.receiver = receiver
+    self.value = value
+
+  def to_dict(self):
+    return self.__dict__
+
 
 
 class blockchain:
   def __init__(self):
     self.chain = []
     self.create_genesis()
+    self.unpro_txn = []
 
   def create_genesis(self):
     genesis = block(0,[],0,0)
@@ -44,6 +54,8 @@ class blockchain:
       print(b.nonce)
 
   def mine_block(self,block):
+
+    
     block.nonce = 0
     hashed = block.create_hash()
     while not hashed.startswith('0' * 4):
@@ -51,6 +63,10 @@ class blockchain:
       hashed = block.create_hash()
     block.hashed = hashed
     self.chain.append(block)
+
+  def make_transactions(self,sender,receiver,value):
+    new_trans = transactions(sende,receiver,value)
+    unpro_txn.append(new_trans)
 
   def latest(self):
     return self.chain[-1]
