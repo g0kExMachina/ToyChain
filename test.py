@@ -21,7 +21,7 @@ def print_genesis():
 def create_10blocks():
   new_blockchain = blockchain()
   for i in range(10):
-    make_10transactions(new_blockchain)
+    new_blockchain = make_10transactions(new_blockchain)
     new_blockchain.create_blocks()
   # new_blockchain.iterate_blocks()
 
@@ -31,18 +31,18 @@ def create_1blocks():
   new_blockchain.create_blocks()
 
 def check_transactions(new_blockchain):
-  new_trans = new_blockchain.make_transactions("Gokul","Alice",5)
+  new_trans = new_blockchain.make_transactions("Gokul","Alice",10)
 
 def make_10transactions(new_blockchain):
   for i in range(10):
-    sender = str(uuid.uuid4()).replace('-','')
-    receiver = str(uuid.uuid4()).replace('-','')
-    new_trans = new_blockchain.make_transactions(sender,receiver,random.randint(50,5000))
-
+   	sender = str(uuid.uuid4()).replace('-','')
+   	receiver = str(uuid.uuid4()).replace('-','')
+   	new_trans = new_blockchain.make_transactions(sender,receiver,random.randint(50,5000))
+  return new_blockchain
   # Running Things
 
 #check_mining_genesis()
 #check_transactions()
-create_10blocks()
-# create_1blocks()
+# create_10blocks()
+create_1blocks()
 #make_10transcations()
